@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreBalance - Pilates & Bienestar</title>
+    <style>
+        /* Estilos Globales y Variables */
+        :root {
+            --color-principal: #4A5D4E; /* Verde oliva */
+            --color-secundario: #8A9A86; 
+            --color-acento: #D4A373; /* Arena */
+            --color-fondo: #FAF9F6; 
+            --color-texto: #333333;
+            --color-blanco: #FFFFFF;
+            --color-borde: #E5E5E5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de Navegación */
+        header {
+            background-color: var(--color-blanco);
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav .logo {
+            color: var(--color-principal);
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav .logo strong {
+            font-weight: 700;
+            color: var(--color-acento);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--color-texto);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-principal);
+        }
+
+        /* Sección Hero Ampliada */
+        .hero {
+            background: linear-gradient(rgba(74, 93, 78, 0.8), rgba(40, 50, 42, 0.85)), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1920') no-repeat center center/cover;
+            color: var(--color-blanco);
+            padding: 11rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 750px;
+            margin: 0 auto 2.5rem auto;
+            color: #F0F2F0;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* Contenido Extra de Inicio: Características Destacadas */
+        .introduccion-home {
+            background-color: var(--color-blanco);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.01);
+            text-align: center;
+            margin-top: -4rem; 
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #F0EFEA;
+        }
+
+        .introduccion-home p {
+            font-size: 1.1rem;
+            color: #555555;
+            max-width: 900px;
+            margin: 0 auto 3rem auto;
+            text-align: justify;
+        }
+
+        .pilares-home {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .pilar {
+            padding: 1rem;
+        }
+
+        .pilar h4 {
+            color: var(--color-principal);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pilar p {
+            font-size: 0.95rem;
+            color: #666666;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        /* NUEVA SECCIÓN: Perfil del Instructor / Valentina Meza */
+        .instructor-section {
+            background-color: var(--color-blanco);
+            padding: 4.5rem 3rem;
+            border-radius: 12px;
+            border: 1px solid #F0EFEA;
+            margin: 5rem auto;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .instructor-img-wrapper {
+            text-align: center;
+        }
+
+        .instructor-img {
+            width: 100%;
+            max-width: 340px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(74, 93, 78, 0.12);
+            border: 4px solid var(--color-fondo);
+        }
+
+        .instructor-info h2 {
+            color: var(--color-principal);
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+        }
+
+        .instructor-cargo {
+            display: block;
+            color: var(--color-acento);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .instructor-info p {
+            color: #555555;
+            font-size: 1rem;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .instructor-metas {
+            list-style: none;
+        }
+
+        .instructor-metas li {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: #444444;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .instructor-metas li::before {
+            content: "✦";
+            color: var(--color-acento);
+            font-weight: bold;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: var(--color-blanco);
+            padding: 0.9rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #C29263;
+            transform: translateY(-2px);
+        }
+
+        .btn-tarjeta {
+            margin-top: 1.5rem;
+            background-color: transparent;
+            border: 2px solid var(--color-principal);
+            color: var(--color-principal);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-tarjeta:hover {
+            background-color: var(--color-principal);
+            color: var(--color-blanco);
+        }
+
+        /* Contenedor Principal */
+        .contenedor {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--color-principal);
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitulo-seccion {
+            text-align: center;
+            color: #777777;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* Cuadrícula de Pilates */
+        .pilates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .tarjeta {
+            background-color: var(--color-blanco);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border: 1px solid #F0EFEA;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(74, 93, 78, 0.08);
+        }
+
+        .tarjeta h3 {
+            color: var(--color-principal);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .tarjeta p {
+            font-size: 0.95rem;
+            color: #666666;
+            flex-grow: 1;
+        }
+
+        /* Testimonios */
+        .testimonios-section {
+            margin: 6rem 0;
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .tarjeta-testimonio {
+            background-color: var(--color-blanco);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #F0EFEA;
+            position: relative;
+        }
+
+        .tarjeta-testimonio .comillas {
+            font-size: 4rem;
+            color: #E2EAF4;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .estrellas {
+            color: var(--color-acento);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonio-texto {
+            font-size: 0.95rem;
+            color: #555555;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .usuario-perfil {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .usuario-perfil img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #E5E5E5;
+        }
+
+        .usuario-info h5 {
+            color: var(--color-principal);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .usuario-info span {
+            font-size: 0.8rem;
+            color: #888888;
+        }
+
+        /* Ventana Emergente / MODAL INTERACTIVO */
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(5px); 
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .modal-contenido {
+            background-color: var(--color-blanco);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            animation: aparecer 0.4s ease-out;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @keyframes aparecer {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #E5E5E5;
+        }
+
+        .modal-info {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-info h2 {
+            color: var(--color-principal);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-info p {
+            font-size: 0.95rem;
+            color: #555555;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .modal-info ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-info ul li {
+            font-size: 0.9rem;
+            color: #444444;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .modal-info ul li::before {
+            content: "✓";
+            color: var(--color-acento);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .cerrar-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--color-texto);
+            cursor: pointer;
+            transition: color 0.2s;
+            z-index: 10;
+        }
+
+        .cerrar-modal:hover {
+            color: var(--color-acento);
+        }
+
+        /* Filosofía */
+        .filosofia {
+            background-color: var(--color-blanco);
+            padding: 5rem 3rem;
+            margin: 6rem 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .bloque-frase {
+            font-size: 1.4rem;
+            color: var(--color-principal);
+            max-width: 800px;
+            margin: 2.5rem auto 0 auto;
+            font-style: italic;
+            line-height: 1.8;
+            border-top: 1px solid #EAE8E1;
+            padding-top: 1.5rem;
+        }
+
+        /* Contacto */
+        .contacto {
+            background-color: var(--color-blanco);
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .form-grupo {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-grupo label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--color-principal);
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            font-family: inherit;
+            border: 1px solid var(--color-borde);
+            border-radius: 6px;
+            background-color: #FAFAFA;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-principal);
+            background-color: var(--color-blanco);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-principal);
+            color: #D1D7D3;
+            text-align: center;
+            padding: 3rem;
+            margin-top: 7rem;
+            font-size: 0.9rem;
+        }
+
+        /* Pantallas Pequeñas */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; }
+            nav ul { margin-top: 1.5rem; }
+            nav ul li { margin: 0 1rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .introduccion-home { margin-top: 2rem; padding: 2rem 1rem; }
+            .instructor-section { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 2rem; }
+            .modal-contenido { grid-template-columns: 1fr; }
+            .modal-imagen { height: 200px; }
+            .modal-info { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Core<strong>Balance</strong></a>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#instructor">Especialista</a></li>
+                <li><a href="#metodo">El Método</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Sugerencias</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>Control, Precisión y Fluidez</h1>
+        <p>Tu salud no es un destino, es un camino constante de movimiento consciente. Descubre cómo rediseñar tu fuerza desde el interior.</p>
+        <a href="#metodo" class="btn">Comenzar Ahora</a>
+    </section>
+
+    <section class="introduccion-home">
+        <p>
+            Bienvenido a <strong>CoreBalance</strong>, un espacio concebido para transformar la manera en que habitas tu cuerpo. No importa tu edad, tu condición física actual o si nunca has entrenado antes; nuestro método se adapta milimétricamente a ti. Aquí no buscamos el agotamiento extremo, sino la eficiencia motriz. A través de sesiones dinámicas y una atención minuciosa al detalle postural, lograrás despertar músculos profundos que no sabías que existían, devolviéndole a tu vida la ligereza, la agilidad y el bienestar que mereces.
+        </p>
+        <div class="pilares-home">
+            <div class="pilar">
+                <h4>Más Sano</h4>
+                <p>Alivia de raíz los dolores de espalda, mejora la circulación y descomprime las articulaciones desgastadas por la rutina.</p>
+            </div>
+            <div class="pilar">
+                <h4>En Forma</h4>
+                <p>Desarrolla una musculatura alargada, esbelta y compacta, ganando una fuerza funcional real para tu día a día.</p>
+            </div>
+            <div class="pilar">
+                <h4>Con Más Ánimo</h4>
+                <p>La respiración profunda estimula el sistema nervioso, liberando tensiones mentales y recargando tu vitalidad por completo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructor" class="instructor-section">
+        <div class="instructor-img-wrapper">
+            <img class="instructor-img" src="valentina.jpg.png" alt="Valentina Meza">
+        </div>
+        <div class="instructor-info">
+            <h2>Valentina Meza</h2>
+            <span class="instructor-cargo">Directora e Instructora Especialista — 31 Años</span>
+            <p>
+                Detrás de cada rutina de movimiento inteligente en CoreBalance se encuentra la guía de <strong>Valentina Meza</strong>. Con una sólida trayectoria de más de 5 años de experiencia liderando procesos de acondicionamiento físico, rehabilitación postural y bienestar integral, Valentina destaca por su enfoque personalizado y su precisión biomecánica.
+            </p>
+            <p>
+                Su pasión y destreza técnica provienen de una base rigurosa: fue directamente capacitada en **Venezuela** por una de las referentes y maestras más destacadas del método en el país. Esta mentoría de élite le permite abordar cada tutoría, consulta y clase con un criterio clínico excepcional, adaptando los ejercicios tradicionales a las necesidades fisiológicas e individuales de cada alumno.
+            </p>
+            <ul class="instructor-metas">
+                <li>Consultas personalizadas para evaluación de postura y patologías.</li>
+                <li>Tutorías individuales orientadas a la progresión técnica en máquinas.</li>
+                <li>Diseño de programas de longevidad articular y flexibilidad activa.</li>
+            </ul>
+        </div>
+    </section>
+
+    <main class="contenedor">
+        
+        <section id="metodo">
+            <h2 class="titulo-seccion">Nuestras Disciplinas</h2>
+            <p class="subtitulo-seccion">Haz clic en "Ver Detalles" para explorar el funcionamiento y los objetivos específicos de cada tipo.</p>
+            
+            <div class="pilates-grid">
+                
+                <div class="tarjeta">
+                    <h3>Pilates Mat (Suelo)</h3>
+                    <p>La base fundamental del método utilizando tu propio peso corporal y pequeños elementos de control postural.</p>
+                    <button class="btn-tarjeta" onclick="abrirDetalle('mat')">Ver Detalles</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Pilates Reformer</h3>
+                    <p>Sesiones dinámicas asistidas por un sistema de resortes y poleas que incrementan la fuerza muscular profunda.</p>
+                    <button class="btn-tarjeta" onclick="abrirDetalle('reformer')">Ver Detalles</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Flexibilidad y Postura</h3>
+                    <p>Enfoque terapéutico orientado a descomprimir la columna vertebral y corregir malos hábitos posturales.</p>
+                    <button class="btn-tarjeta" onclick="abrirDetalle('postura')">Ver Detalles</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Fuerza del Core</h3>
+                    <p>Entrenamiento riguroso focalizado en el centro de energía corporal profundo: abdomen, lumbares y suelo pélvico.</p>
+                    <button class="btn-tarjeta" onclick="abrirDetalle('core')">Ver Detalles</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Conexión Mente-Cuerpo</h3>
+                    <p>Sincronización exacta entre el movimiento técnico y los ritmos respiratorios para reducir el estrés del sistema nervioso.</p>
+                    <button class="btn-tarjeta" onclick="abrirDetalle('conexion')">Ver Detalles</button>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Pre y Postnatal</h3>
+                    <p>Acondicionamiento físico sumamente cuidado y adaptado para proteger y fortalecer a las madres en cada etapa.</p>
+                    <button class="btn-tarjeta" onclick="abrirDetalle('natal')">Ver Detalles</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="testimonios" class="testimonios-section">
+            <h2 class="titulo-seccion">Historias que Inspiran</h2>
+            <p class="subtitulo-seccion">Descubre cómo el movimiento guiado y consciente ha transformado la salud y el ánimo de nuestros alumnos.</p>
+            
+            <div class="testimonios-grid">
+                <div class="tarjeta-testimonio">
+                    <span class="comillas">“</span>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="testimonio-texto">
+                        "Llegué al estudio con un dolor lumbar crónico que no me dejaba dormir. Tras tres meses haciendo Pilates, el dolor desapareció por completo. Me siento muchísimo más sano, ágil y, sobre todo, recuperé la libertad de moverme sin miedo."
+                    </p>
+                    <div class="usuario-perfil">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" alt="Laura G.">
+                        <div class="usuario-info">
+                            <h5>Laura Gutiérrez</h5>
+                            <span>Alumna desde hace 6 meses</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tarjeta-testimonio">
+                    <span class="comillas">“</span>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="testimonio-texto">
+                        "Pensé que Pilates era solo estirarse, pero la exigencia en el Core es increíble. He tonificado mi cuerpo como nunca antes, estoy en la mejor forma física de mi vida y mi postura frente a la computadora mejoró un 100%. ¡Vale cada segundo!"
+                    </p>
+                    <div class="usuario-perfil">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150" alt="Carlos M.">
+                        <div class="usuario-info">
+                            <h5>Carlos Mendoza</h5>
+                            <span>Alumno de Pilates Reformer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tarjeta-testimonio">
+                    <span class="comillas">“</span>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="testimonio-texto">
+                        "Para mí, las clases son terapéuticas. Entro cansada y estresada del trabajo y salgo con una energía y un ánimo renovados. La conexión entre respiración y ejercicio realmente te limpia la mente. Cambio de vida absoluto."
+                    </p>
+                    <div class="usuario-perfil">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150" alt="Elena R.">
+                        <div class="usuario-info">
+                            <h5>Elena Rostova</h5>
+                            <span>Alumna de Conexión Mente-Cuerpo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="miModal" class="modal" onclick="cerrarDetalleFuera(event)">
+            <div class="modal-contenido">
+                <span class="cerrar-modal" onclick="cerrarDetalle()">&times;</span>
+                <img id="modalImg" class="modal-imagen" src="" alt="Ejemplo de Pilates">
+                <div class="modal-info">
+                    <h2 id="modalTitulo">Título del Tipo</h2>
+                    <p id="modalDescripcion">Descripción detallada.</p>
+                    <h4 style="color: var(--color-principal); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Objetivos Principales:</h4>
+                    <ul id="modalLista"></ul>
+                    <button class="btn" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;" onclick="cerrarDetalle(); window.location.href='#contacto';">Solicitar esta Clase</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="filosofia" class="filosofia">
+            <h2 class="titulo-seccion">El Enfoque Consciente</h2>
+            <p style="text-align: justify; max-width: 850px; margin: 0 auto; color: #555555;">
+                Pilates prioriza el control mental sobre cada contracción muscular, transformando el ejercicio en una práctica de autoconocimiento y longevidad física.
+            </p>
+            <div class="bloque-frase">
+                "En 10 sesiones sentirás the diferencia, en 20 sesiones verás la diferencia, y en 30 sesiones tu cuerpo habrá cambiado por completo." <br><span style="font-size: 1rem; color: #777777; font-weight: bold; display: block; margin-top: 0.5rem;">— Joseph Pilates</span>
+            </div>
+        </section>
+
+        <section id="contacto" class="contacto">
+            <h2 class="titulo-seccion" style="margin-bottom: 1rem;">Buzón de Consultas y Sugerencias</h2>
+            <p style="text-align: center; color: #777777; margin-bottom: 2.5rem;">¿Tienes alguna duda sobre qué clase se adapta mejor a tu condición física o quieres sugerir un horario? Escríbenos.</p>
+            
+            <form action="#" method="POST">
+                <div class="form-grupo">
+                    <label for="nombre">Nombre y Apellido</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. María Fernanda" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" class="form-control" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="mensaje">Tu Comentario o Inquietud</label>
+                    <textarea id="mensaje" name="mensaje" class="form-control" placeholder="Indícanos tus comentarios, propuestas o dudas particulares..." required></textarea>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CoreBalance Estudio. Espacio dedicado a la armonía, salud y movimiento inteligente.</p>
+    </footer>
+
+    <script>
+        const datosPilates = {
+            mat: {
+                titulo: "Pilates Mat (Suelo)",
+                imagen: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600",
+                desc: "Es la esencia pura creada por Joseph Pilates. Se realiza sobre una colchoneta y desafía el cuerpo a trabajar en contra de la gravedad de forma precisa. Requiere un gran control y enfoque mental constante ya que el propio cuerpo es la máquina principal.",
+                beneficios: ["Desarrolla el control corporal absoluto.", "Mejora el tono muscular general.", "Excelente para aprender los patrones de respiración.", "Aumenta la resistencia física interna."]
+            },
+            reformer: {
+                titulo: "Pilates Reformer",
+                imagen: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=600",
+                desc: "Se trabaja en una cama equipada con una plataforma deslizante, resortes de distintas tensiones, poleas y correas. Permite realizar cientos de variaciones de ejercicios asistiendo a personas con movilidad reducida o desafiando al máximo a atletas de alto rendimiento.",
+                beneficios: ["Fortalece músculos sin impacto articular.", "Permite un rango de movimiento más amplio.", "Alineación corporal simétrica asistida.", "Ideal para aumentar la fuerza excéntrica."]
+            },
+            postura: {
+                titulo: "Flexibilidad y Postura",
+                imagen: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=600",
+                desc: "Una variante con fines altamente terapéuticos. Está diseñada para contrarrestar los estragos de las malas posturas cotidianas, estirando las cadenas musculares acortadas y creando espacio intervertebral para liberar tensiones de la columna.",
+                beneficios: ["Alivia dolores crónicos de espalda y cuello.", "Corrige desbalances en la pelvis.", "Aumenta la elasticidad muscular profunda.", "Promueve una marcha y postura elegantes."]
+            },
+            core: {
+                titulo: "Fuerza del Core",
+                imagen: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=600",
+                desc: "Clase enfocada rigurosamente en lo que Joseph Pilates llamaba el 'Powerhouse'. Trabaja de forma minuciosa el transverso abdominal, los multífidos lumbares, el diafragma y el suelo pélvico, creando un corsé natural e indestructible para proteger tu cuerpo.",
+                beneficios: ["Estabiliza la columna lumbar.", "Mejora drásticamente el equilibrio dinámico.", "Aplana la pared abdominal de adentro hacia afuera.", "Previene hernias y lesiones por esfuerzos."]
+            },
+            conexion: {
+                titulo: "Conexión Mente-Cuerpo",
+                imagen: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600",
+                desc: "Una disciplina con un ritmo más pausado pero profundamente consciente. Aquí, la respiración intercostal guía al movimiento. Ideal para desconectarse del ruido exterior, equilibrar el sistema nervioso autónomo y aliviar la fatiga mental.",
+                beneficios: ["Reduce la ansiedad y el estrés crónico.", "Aumenta la propiocepción (conciencia corporal).", "Oxigena el torrente sanguíneo eficientemente.", "Mejora la calidad del descanso nocturno."]
+            },
+            natal: {
+                titulo: "Pilates Pre y Postnatal",
+                imagen: "https://images.unsplash.com/photo-1536619244383-0229bb27d9bc?q=80&w=600",
+                desc: "Rutinas modificadas con total responsabilidad biomecánica. Durante el embarazo, prepara el cuerpo para el parto fortaleciendo las piernas y el suelo pélvico. En el postnatal, ayuda a recuperar la musculatura abdominal interna y a cerrar la diástasis recti de manera segura.",
+                beneficios: ["Fortalece el suelo pélvico adecuadamente.", "Reduce la retención de líquidos y mejora el retorno venoso.", "Disminuye las molestias lumbares del embarazo.", "Recuperación postparto rápida y guiada."]
+            }
+        };
+
+        function abrirDetalle(tipo) {
+            const datos = datosPilates[tipo];
+            if (!datos) return;
+
+            document.getElementById('modalTitulo').innerText = datos.titulo;
+            document.getElementById('modalImg').src = datos.imagen;
+            document.getElementById('modalDescripcion').innerText = datos.desc;
+
+            const lista = document.getElementById('modalLista');
+            lista.innerHTML = "";
+            datos.beneficios.forEach(beneficio => {
+                const li = document.createElement('li');
+                li.innerText = beneficio;
+                lista.appendChild(li);
+            });
+
+            document.getElementById('miModal').style.display = 'flex';
+        }
+
+        function cerrarDetalle() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+
+        function cerrarDetalleFuera(event) {
+            if (event.target === document.getElementById('miModal')) {
+                cerrarDetalle();
+            }
+        }
+    </script>
+</body>
+</html>
